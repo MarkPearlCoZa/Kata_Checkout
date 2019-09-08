@@ -11,7 +11,14 @@ namespace Checkout
 
         public void Scan(char current)
         {
-            _items.Add(current, 1);
+            if (_items.ContainsKey(current))
+            {
+                _items[current] += 1;
+            }
+            else
+            {
+                _items.Add(current, 1);
+            }
         }
     }
 }
