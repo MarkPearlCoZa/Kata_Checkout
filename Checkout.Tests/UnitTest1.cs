@@ -25,6 +25,9 @@ namespace Tests
 
             sut.Scan('A');
             Assert.That(sut.Items, Is.EquivalentTo(new Dictionary<char, int> { { 'A', 2 } }));
+
+            sut.Scan('B');
+            Assert.That(sut.Items, Is.EquivalentTo(new Dictionary<char, int> { { 'A', 2 }, {'B', 1} }));
         }
 
 
