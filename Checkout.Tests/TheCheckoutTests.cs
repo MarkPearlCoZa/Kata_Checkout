@@ -1,16 +1,12 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Transactions;
-using Checkout;
 using NUnit.Framework;
 
-namespace Tests
+namespace Checkout.Tests
 {
-    public class Tests
+    public class TheCheckoutTests
     {
         [Test]
-        public void BuildUpItemsDataStructure()
+        public void TestIncremental()
         {
             var sut = new TheCheckout(PricingRules());
 
