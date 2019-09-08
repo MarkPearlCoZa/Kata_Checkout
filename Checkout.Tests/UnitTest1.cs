@@ -33,6 +33,7 @@ namespace Tests
             Assert.That(Price("CDBA"), Is.EqualTo(115));
 
             Assert.That(Price("AA"), Is.EqualTo(100));
+            Assert.That(Price("AAA"), Is.EqualTo(130));
         }
 
         private static int Price(string goods)

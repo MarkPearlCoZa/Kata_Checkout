@@ -32,14 +32,16 @@ namespace Checkout
         public int GetTotal()
         {
             if (!_items.Any()) return 0;
+
             var total = 0;
             foreach (var item in _items)
             {
                 var quantity = item.Value;
                 while (quantity > 0)
                 {
-                    total += _pricingRules[item.Key][1];
-                    quantity--;
+                    var quantityKey = _pricingRules[item.Key].Keys.Last(i => i <= quantity);
+                    total += _pricingRules[item.Key][quantityKey];
+                    quantity-=quantityKey;
                 }
             }
             return total;
