@@ -36,15 +36,24 @@ namespace Checkout
             var total = 0;
             foreach (var item in _items)
             {
-                var quantity = item.Value;
-                while (quantity > 0)
-                {
-                    var quantityKey = _pricingRules[item.Key].Keys.Last(i => i <= quantity);
-                    total += _pricingRules[item.Key][quantityKey];
-                    quantity-=quantityKey;
-                }
+                var itemPrice = PriceItem(item);
+                total += itemPrice;
             }
             return total;
+        }
+
+        private int PriceItem(KeyValuePair<char, int> item)
+        {
+            var subTotal = 0;
+            var quantity = item.Value;
+            while (quantity > 0)
+            {
+                var quantityKey = _pricingRules[item.Key].Keys.Last(i => i <= quantity);
+                subTotal += _pricingRules[item.Key][quantityKey];
+                quantity -= quantityKey;
+            }
+
+            return subTotal;
         }
     }
 }
