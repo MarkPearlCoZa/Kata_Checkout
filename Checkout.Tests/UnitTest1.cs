@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
+using Checkout;
 using NUnit.Framework;
 
 namespace Tests
@@ -17,14 +18,16 @@ namespace Tests
         public void TestScan()
         {
             var input = new List<char>() {'A'};
+            var sut = new TheCheckout();
 
             var current = input.Last();
-            var actual = new Dictionary<char, int>();
-            actual.Add(current,1);
-            var result = actual;
+            sut.Scan(current);
+            var result = sut.Items;
             
             Assert.That(result, Is.EquivalentTo(new Dictionary<char, int>{{'A',1}}));
 
         }
+
+        
     }
 }
