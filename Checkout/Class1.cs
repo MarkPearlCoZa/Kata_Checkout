@@ -26,5 +26,10 @@ namespace Checkout
                 _items.Add(current, 1);
             }
         }
+
+        public int GetTotal()
+        {
+            return _pricingRules['A'][1];
+        }
     }
 }

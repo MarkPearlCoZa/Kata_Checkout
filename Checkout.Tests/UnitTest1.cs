@@ -12,7 +12,7 @@ namespace Tests
         [Test]
         public void BuildUpItemsDataStructure()
         {
-            var sut = new TheCheckout();
+            var sut = new TheCheckout(PricingRules());
 
             sut.Scan('A');
             Assert.That(sut.Items, Is.EquivalentTo(new Dictionary<char, int> { { 'A', 1 } }));
@@ -24,9 +24,31 @@ namespace Tests
             Assert.That(sut.Items, Is.EquivalentTo(new Dictionary<char, int> { { 'A', 2 }, { 'B', 1 } }));
         }
 
-        public void RepresentPricingRules()
+        [Test]
+        public void TestTotals()
         {
-            var pricingRules = new Dictionary<char, Dictionary<int, int>>()
+            var goods = "A";
+            var total = Price(goods);
+            Assert.That(total, Is.EqualTo(50));
+        }
+
+        private static int Price(string goods)
+        {
+            var pricingRules = PricingRules();
+
+            var sut = new TheCheckout(pricingRules);
+            var items = goods.ToCharArray();
+            foreach (var item in items)
+            {
+                sut.Scan(item);
+            }
+
+            return sut.GetTotal();
+        }
+
+        private static Dictionary<char, Dictionary<int, int>> PricingRules()
+        {
+            return new Dictionary<char, Dictionary<int, int>>()
             {
                 {'A', new Dictionary<int, int>()
                     {
@@ -51,9 +73,6 @@ namespace Tests
                     }
                 }
             };
-
-            var sut = new TheCheckout(pricingRules);
         }
-
     }
 }
