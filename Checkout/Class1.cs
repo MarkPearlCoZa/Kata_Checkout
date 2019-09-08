@@ -5,7 +5,13 @@ namespace Checkout
 {
     public class TheCheckout
     {
-        Dictionary<char, int> _items = new Dictionary<char, int>();
+        private readonly Dictionary<char, Dictionary<int, int>> _pricingRules;
+        private readonly Dictionary<char, int> _items = new Dictionary<char, int>();
+
+        public TheCheckout(Dictionary<char, Dictionary<int, int>> pricingRules)
+        {
+            _pricingRules = pricingRules;
+        }
 
         public Dictionary<char, int> Items => _items;
 
