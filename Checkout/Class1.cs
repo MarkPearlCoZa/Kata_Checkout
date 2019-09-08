@@ -32,7 +32,12 @@ namespace Checkout
         public int GetTotal()
         {
             if (!_items.Any()) return 0;
-            return _pricingRules['A'][1];
+            var total = 0;
+            foreach (var item in _items)
+            {
+                total += _pricingRules[item.Key][1];
+            }
+            return total;
         }
     }
 }
