@@ -27,8 +27,8 @@ namespace Tests
         [Test]
         public void TestTotals()
         {
-            var total = Price("");
-            Assert.That(total, Is.EqualTo(0));
+            Assert.That(Price(""), Is.EqualTo(0));
+            Assert.That(Price("A"), Is.EqualTo(50));
         }
 
         private static int Price(string goods)
