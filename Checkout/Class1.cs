@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Checkout
 {
@@ -29,6 +31,7 @@ namespace Checkout
 
         public int GetTotal()
         {
+            if (!_items.Any()) return 0;
             return _pricingRules['A'][1];
         }
     }
